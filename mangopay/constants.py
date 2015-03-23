@@ -13,12 +13,12 @@ USER_TYPE_CHOICES = (
 USER_TYPE_CHOICES_DICT = dict(USER_TYPE_CHOICES)
 
 INCOME_RANGE_CHOICES = (
-    (1, "0 - 1,500"),
-    (2, "1,500 - 2,499"),
-    (3, "2,500 - 3,999"),
-    (4, "4,000 - 7,499"),
-    (5, "7,500 - 9,999"),
-    (6, "10,000 +"),
+    (1, "0 - 18,000"),
+    (2, "18,000 - 30'000"),
+    (3, "30,000 - 50'000"),
+    (4, "50,000 - 80,000"),
+    (5, "80,000 - 120,000"),
+    (6, "120,000 +"),
 )
 # Income range choices are given per month in euro
 
