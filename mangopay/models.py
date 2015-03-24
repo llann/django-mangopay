@@ -30,6 +30,7 @@ from django_countries.fields import CountryField
 from django_iban.fields import IBANField, SWIFTBICField
 from money import Money as PythonMoney
 import requests
+import time
 
 from .constants import (INCOME_RANGE_CHOICES,
                         STATUS_CHOICES, DOCUMENT_TYPE_CHOICES,
@@ -119,7 +120,7 @@ class MangoPayUser(models.Model):
         return NotImplementedError
 
     def _birthday_fmt(self):
-        return int(self.birthday.strftime("%s"))
+        return time.mktime(self.date_of_birth.timetuple())
 
     def _are_required_documents_validated(self):
         are_validated = True
