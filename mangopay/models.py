@@ -33,6 +33,7 @@ from django_iban.fields import IBANField, SWIFTBICField
 from money import Money as PythonMoney
 import requests
 import jsonfield
+import time
 
 from .constants import (INCOME_RANGE_CHOICES,
                         STATUS_CHOICES, DOCUMENT_TYPE_CHOICES,
