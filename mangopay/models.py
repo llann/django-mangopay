@@ -123,7 +123,7 @@ class MangoPayUser(models.Model):
         return NotImplementedError
 
     def _birthday_fmt(self):
-        return int(self.birthday.strftime("%s"))
+        return time.mktime(self.date_of_birth.timetuple())
 
     def _are_required_documents_validated(self):
         are_validated = True
