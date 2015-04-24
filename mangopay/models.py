@@ -31,8 +31,8 @@ from mangopaysdk.types.payinpaymentdetailscard import PayInPaymentDetailsCard
 from django_countries.fields import CountryField
 from django_iban.fields import IBANField, SWIFTBICField
 from money import Money as PythonMoney
+from jsonfield import JSONField
 import requests
-import jsonfield
 import time
 
 from .constants import (INCOME_RANGE_CHOICES,
@@ -91,6 +91,7 @@ class MangoPayUser(models.Model):
         created_mangopay_user = client.users.Create(mangopay_user)
         self.mangopay_id = created_mangopay_user.Id
         self.save()
+        return self
 
     def update(self):
         client = get_mangopay_api_client()
@@ -181,7 +182,6 @@ class MangoPayNaturalUser(MangoPayUser):
         mangopay_user.IncomeRange = self.income_range
         mangopay_user.Address = self.address
         mangopay_user.Id = self.mangopay_id
-        return mangopay_user
 
     def __unicode__(self):
         return self.user.get_full_name()
@@ -392,6 +392,7 @@ class MangoPayWallet(models.Model):
         created_mangopay_wallet = client.wallets.Create(mangopay_wallet)
         self.mangopay_id = created_mangopay_wallet.Id
         self.save()
+        return self
 
     def balance(self):
         wallet = self._get()
@@ -438,6 +439,7 @@ class MangoPayPayInAbstract(models.Model):
         created_pay_in = client.payIns.Create(pay_in)
         self.mangopay_id = created_pay_in.Id
         self._update(created_pay_in)
+        return self
 
     def get(self):
         pay_in = self._get()
@@ -460,7 +462,7 @@ class MangoPayPayInBankWire(MangoPayPayInAbstract):
     mangopay_wallet = models.ForeignKey(MangoPayWallet,
                                         related_name="mangopay_payin_bankwire")
     wire_reference = models.CharField(null=True, blank=True, max_length=50)
-    mangopay_bank_account = jsonfield.JSONField(null=True, blank=True)
+    mangopay_bank_account = JSONField(null=True, blank=True)
 
     def _get_payment_details(self):
         payment_details = PayInPaymentDetailsBankWire()
