@@ -1,13 +1,19 @@
 # -*- coding: UTF-8 -*-
 
 from django.contrib import admin
-from mangopay.models import MangoPayUser, MangoPayDocument, MangoPayPage, MangoPayBankAccount, MangoPayWallet, MangoPayTransfer, MangoPayRefund, MangoPayPayIn, MangoPayPayInBankWire, MangoPayCardRegistration, MangoPayCard, MangoPayPayOut, MangoPayBankAccount, MangoPayPage, MangoPayDocument, MangoPayWallet
+from mangopay.models import MangoPayUser, MangoPayNaturalUser, MangoPayLegalUser, MangoPayDocument, MangoPayPage, MangoPayBankAccount, MangoPayWallet, MangoPayTransfer, MangoPayRefund, MangoPayPayIn, MangoPayPayInBankWire, MangoPayCardRegistration, MangoPayCard, MangoPayPayOut, MangoPayBankAccount, MangoPayPage, MangoPayDocument, MangoPayWallet
 
 
-class MangoPayUserAdmin(admin.ModelAdmin):
+class MangoPayNaturalUserAdmin(admin.ModelAdmin):
 
     list_display = ('mangopay_id', 'user', 'type', 'first_name', 'last_name', 'country_of_residence',)
-admin.site.register(MangoPayUser, MangoPayUserAdmin)
+admin.site.register(MangoPayNaturalUser, MangoPayNaturalUserAdmin)
+
+
+class MangoPayLegalUserAdmin(admin.ModelAdmin):
+
+    list_display = ('mangopay_id', 'user', 'business_name', 'type', 'first_name', 'last_name', 'country_of_residence',)
+admin.site.register(MangoPayLegalUser, MangoPayLegalUserAdmin)
 
 
 class MangoPayWalletAdmin(admin.ModelAdmin):

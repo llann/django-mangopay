@@ -88,6 +88,9 @@ class MangoPayUser(models.Model):
     # Regular Authentication Fields:
     address = models.CharField(blank=True, null=True, max_length=254)
 
+    def __unicode__(self):
+        return str(self.first_name) + " " + str(self.last_name) + " (" + str(self.mangopay_id) + ")"
+
     def create(self):
         client = get_mangopay_api_client()
         mangopay_user = self._build()
@@ -396,6 +399,9 @@ class MangoPayWallet(models.Model):
         self.mangopay_id = created_mangopay_wallet.Id
         self.save()
         return self
+
+    def __unicode__(self):
+        return str(self.mangopay_user.first_name) + " " + str(self.mangopay_user.last_name) + " (" + str(self.mangopay_id) + ")"
 
     def balance(self):
         wallet = self._get()
