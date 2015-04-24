@@ -1,9 +1,10 @@
 django-iban==0.2.6
 celery==3.0.12
--e git+https://github.com/izquierdo/python-money.git@5c14ce00d9472ddce55bb7a799f6051509dbd092#egg=python_money
 mangopaysdk==0.32
 Sphinx==1.2.2
 django-model-utils==1.4.0
 django-storages==1.1.8
 requests==2.2.1
 djangofield==1.0.3
+git+https://github.com/limist/py-moneyed.git
+git+https://github.com/llann/django-money.git
